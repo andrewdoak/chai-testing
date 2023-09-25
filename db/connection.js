@@ -1,8 +1,8 @@
 //=============================================================================
 // Mongo Atlas Connection
 //=============================================================================
-require('dotenv').config();
-const mongoose = require('mongoose');
+require("dotenv").config();
+const mongoose = require("mongoose");
 
 // Mongo URL and Connection
 const mongoURI = process.env.DATABASE_URL;
@@ -13,13 +13,15 @@ mongoose.connect(mongoURI);
 
 // Connection Error/Success - optional but can be helpful
 // Define callback functions for various events
-db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
-db.on('connected', () => console.log('mongo connected at: ', mongoURI));
-db.on('disconnected', () => console.log('mongo disconnected'));
+db.on("error", (err) =>
+  console.log(err.message + " Looks like MongoDB is not running.")
+);
+db.on("connected", () => console.log("MongoDB is connected at: ", mongoURI));
+db.on("disconnected", () => console.log("MongoDB database connection dropped"));
 
 // Open the Connection
-db.on('open', () => {
-	console.log('✅ mongo connection made!');
+db.on("open", () => {
+  console.log("✅ MongoDB connection successful!");
 });
 
 // now, our mongoose instance has a configured connection to our local db, in addition
